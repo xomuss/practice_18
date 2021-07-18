@@ -1,9 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import routs from '../../route/routs';
+import {toggleModalOperation} from '../../redux/operations';
 
-const { home, contact, about } = routs;
-const Header = () => {
+
+const { home, contact, about, } = routs;
+
+const Header = ({ toggleModal }) => {
+  
+  
+  // const openModal = () => toggleModal();
   return (
     <header>
       <ul>
@@ -19,7 +26,7 @@ const Header = () => {
       </ul>
       <ul>
         <li>
-          <button>login</button>
+          <button onClick={toggleModal}>login</button>
         </li>
         <li>
           <button>register</button>
@@ -29,4 +36,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapDispatchToProps = {toggleModal: toggleModalOperation,
+  
+};
+
+export default connect(null, mapDispatchToProps)(Header);
